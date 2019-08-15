@@ -17,7 +17,7 @@ class Name(object):
                        "thistle", "toe", "needle", "watcher", "wish", "whisper"]
 
     pelt_suffixes = {'TwoColour': ['patch', 'spot', 'splash', 'patch', 'spots'],
-                     'Tabby': ['stripe', 'feather', 'leaf', 'speck', 'stripe'],
+                     'Tabby': ['stripe', 'feather', 'leaf', 'stripe', 'shade'],
                      'Speckled': ['dapple', 'speckle', 'spot', 'speck'],
                      'Tortie': ['dapple', 'speckle', 'spot', 'dapple'],
                      'Calico': ['stripe', 'dapple', 'patch', 'patch']}

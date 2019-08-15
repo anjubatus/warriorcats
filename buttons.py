@@ -22,9 +22,9 @@ class Buttons(object):
 
         self.ID = str(randint(0, 9)) + str(randint(0, 9)) + str(randint(0, 9)) + str(randint(0, 9)) + str(
                 randint(0, 9))
-        self.x_screen = None
-        self.x_switch = None
-        self.x_value = None
+        self.screen = None
+        self.switch = None
+        self.new_value = None
 
     def draw_button(self, pos):
         new_button = pygame.Surface((self.font.text(self.text) + 10, self.font.size + 6))

@@ -8,7 +8,7 @@ from random import choice, randint
 class Cat(object):
     used_screen = screen
     traits = ['ambitious', 'loyal', 'careful', 'brave', 'fierce', 'nervous', 'strict', 'charismatic', 'calm',
-              'adventurous', 'compassionate', 'playful', 'vengeful', 'apathetic', 'sassy']
+              'adventurous', 'compassionate', 'playful', 'vengeful', 'apathetic', 'sassy', 'lonesome']
     ages = ['kitten', 'adolescent', 'young adult', 'adult', 'adult', 'senior adult', 'elder']
     gender_tags = {'female': 'F', 'male': 'M'}
     skills = ['good hunter', 'great hunter', 'fantastic hunter', 'smart', 'very smart', 'extremely smart',
@@ -43,6 +43,8 @@ class Cat(object):
             a = randint(0, 50)
             if a == 1:
                 self.trait = 'strange'
+            elif a == 2:
+                self.trait = 'bloodthirsty'
             else:
                 self.trait = choice(self.traits)
 
