@@ -9,7 +9,7 @@ clock = pygame.time.Clock()
 
 # update switch values
 def update_switches():
-    switch_buttons['clan name'].value(game.naming_text)
+    switch_buttons['clan name'].value(game.switches['naming text'])
     if game.switches['cat'] is not None and game.switches['cat'] in game.choose_cats.keys():
         switch_buttons['leader'].value(game.choose_cats[game.switches['cat']])
         switch_buttons['medicine cat'].value(game.choose_cats[game.switches['cat']])
@@ -60,6 +60,7 @@ while True:
                     x.check()
                 if x.button_type != 'writebutton':
                     if x.clickable:
+                        print 'clicking...'
                         # updating switches
                         update_switches()
 
@@ -72,6 +73,7 @@ while True:
                             x.activate()
 
     # END FRAME
+    buttons.check_out()
     clock.tick(60)
 
     pygame.display.update()

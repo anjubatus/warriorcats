@@ -8,19 +8,19 @@ pygame.display.set_caption('Warrior Cats Simulator')
 
 # G A M E
 class Game(object):
-    # random items to be used
-    new_born = False
+    # Text box variables
     naming_box = pygame.Surface((100, 20))
     naming_box.fill((230, 230, 230))
-    naming_text = ''
+    # naming_text = ''
     max_name_length = 8
+
     choose_cats = {}
     cat_buttons = {'cat0': None, 'cat1': None, 'cat2': None, 'cat3': None,
                    'cat4': None, 'cat5': None, 'cat6': None, 'cat7': None,
                    'cat8': None, 'cat9': None, 'cat10': None, 'cat11': None}
 
     switches = {'cat': None, 'clan name': None, 'leader': None, 'medicine cat': None, 'members': [],
-                'event': None}
+                'event': None, 'cur screen': 'start screen', 'naming text': ''}
     all_screens = {}
 
     cur_events = {}
@@ -30,6 +30,9 @@ class Game(object):
 
     def __init__(self, current_screen='start screen'):
         self.current_screen = current_screen
+
+    def update_game(self):
+        self.current_screen = self.switches['cur screen']
 
 
 # M O U S E

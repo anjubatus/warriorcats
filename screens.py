@@ -118,7 +118,7 @@ class MakeClanScreen(Screens):
         screen_buttons['back to main'].draw_button((50, 50))
         screen_buttons['back to main'].check()
 
-        writer.draw_button((250, 300))
+        writer.draw_button((290, 300))
         writer.check()
 
         switch_buttons['clan name'].draw_button(('center', 500))
