@@ -9,15 +9,16 @@ clock = pygame.time.Clock()
 
 # update switch values
 def update_switches():
-    switch_buttons['clan name'].value(game.switches['naming text'])
+    """switch_buttons['clan_name'].value(game.switches['naming text'])
     if game.switches['cat'] is not None and game.switches['cat'] in game.choose_cats.keys():
         switch_buttons['leader'].value(game.choose_cats[game.switches['cat']])
-        switch_buttons['medicine cat'].value(game.choose_cats[game.switches['cat']])
+        switch_buttons['medicine_cat'].value(game.choose_cats[game.switches['cat']])
         switch_buttons['members'].value(game.choose_cats[game.switches['cat']])
 
     if game.clan is not None:
         greencough.init()
-        leader_cer.init(game.clan.leader)
+        leader_cer.init(game.clan.leader)"""
+    pass
 
 
 events_class.day()
@@ -33,9 +34,6 @@ if if_cats > 0:
 while True:
     screen.fill((255, 255, 255))
     mouse.check_pos()
-
-    # SCREENS
-    game.all_screens[game.current_screen].on_use()
 
     # EVENTS
     for event in pygame.event.get():
@@ -55,25 +53,15 @@ while True:
 
         # MOUSE CLICK
         if event.type == pygame.MOUSEBUTTONDOWN:
-            for x in buttons.all_buttons:
-                if x.collision is not None:
-                    x.check()
-                if x.button_type != 'writebutton':
-                    if x.clickable:
-                        print 'clicking...'
-                        # updating switches
-                        update_switches()
+            game.clicked = True
 
-                        # activating button
-                        x.activate()
-                else:
-                    # WRITER/KEYBOARD
-                    for a in x.clickable.keys():
-                        if x.clickable[a]:
-                            x.activate()
+    # SCREENS
+    game.all_screens[game.current_screen].on_use()
+
+    # update
+    game.update_game()
 
     # END FRAME
-    buttons.check_out()
     clock.tick(60)
 
     pygame.display.update()

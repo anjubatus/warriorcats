@@ -3,33 +3,25 @@ from random import randint
 
 
 class Button(object):
-    # General buttons parent class
     used_screen = screen
     used_mouse = mouse
-    all_buttons = []
-    switches = {}
 
     def __init__(self, font=verdana, frame_colour=(200, 200, 200), clickable_colour=(150, 150, 150),
-                 unavailable_colour=(230, 230, 230), **kwargs):
+                 unavailable_colour=(230, 230, 230)):
         self.text = ''
         self.font = font
         self.frame_colour = frame_colour
         self.clickable_colour = clickable_colour
         self.unavailable_colour = unavailable_colour
-        self.current_colour = self.frame_colour
+        # self.current_colour = self.frame_colour
 
-        self.available = False   # can button be clicked, even if it's on screen and under mouse?
-        self.clickable = False   # is button available and mouse on top?
-        self.collision = None
-        self.on_screen = False   # is button currently on screen at all?
+        # self.available = False   # can button be clicked, even if it's on screen and under mouse?
+        # self.clickable = False   # is button available and mouse on top?
+        # self.collision = None
+        # self.on_screen = False   # is button currently on screen at all?
 
-        self.ID = str(randint(0, 9)) + str(randint(0, 9)) + str(randint(0, 9)) + str(randint(0, 9)) + str(
-                randint(0, 9))
-        self.values = kwargs
-
-    def draw_button(self, pos, text='', image=None, available=True):
-        self.on_screen = True
-        self.available = available
+    def draw_button(self, pos, available=True, image=None, text='', **values):
+        # self.on_screen = True
 
         if not available:
             colour = self.unavailable_colour
@@ -39,8 +31,6 @@ class Button(object):
         # creating visible button
         if image is None:
             new_button = pygame.Surface((self.font.text(text) + 10, self.font.size + 6))
-            new_button.fill(colour)
-            self.font.text(self.text, (5, 0), new_button)
         else:
             new_button = image
 
@@ -54,11 +44,27 @@ class Button(object):
         elif pos[1] < 0:
             new_pos[1] = screen_y + pos[1] - new_button.get_height()
 
-        self.used_screen.blit(new_button, new_pos)
-        self.collision = self.used_screen.blit(new_button, new_pos)
+        # Check collision
+        collision = self.used_screen.blit(new_button, new_pos)
+        clickable = False
+        if available and collision.collidepoint(self.used_mouse.pos):
+            colour = self.clickable_colour
+            clickable = True
+
+        # fill in non-image button
+        if image is None:
+            new_button.fill(colour)
+            self.font.text(text, (5, 0), new_button)
+            self.used_screen.blit(new_button, new_pos)
+        else:
+            self.used_screen.blit(new_button, new_pos)
+
+        # CLICK
+        if game.clicked and clickable:
+            self.activate(values)
 
     def check(self):
-        for x in self.all_buttons:
+        """for x in self.all_buttons:
             if x.button_type not in ['writebutton', 'imagebutton']:
                 if x.on_screen and not x.available:
                     x.current_colour = x.unavailable_colour
@@ -69,32 +75,28 @@ class Button(object):
                     x.current_colour = x.clickable_colour
                 else:
                     x.clickable = False
-                    x.current_colour = x.frame_colour
-
-    def check_out(self):
-        for x in self.all_buttons:
-            x.on_screen = False
-            x.available = False
-
-    def is_available(self, list_of_available):
-        """for i in self.all_buttons:
-            if i not in list_of_available:
-                i.available = False
-            else:
-                i.available = True"""
+                    x.current_colour = x.frame_colour"""
         pass
 
-    def activate(self):
-        if self.available:
-            for key, value in self.values.iteritems():
-                if key in game.switches.keys():
-                    game.switches[key] = value
-                else:
-                    print str(key) + ' -key not found...'
-            game.naming_text = ''
-            game.all_screens[game.current_screen].screen_switches()
+    def check_out(self):
+        """for x in self.all_buttons:
+            x.on_screen = False
+            x.available = False"""
+        pass
+
+    def activate(self, values=None):
+        if values is None:
+            values = {}
+        for key, value in values.items():
+            if key in game.switches.keys():
+                game.switches[key] = value
+                if key == 'cur_screen':
+                    game.all_screens[game.current_screen].screen_switches()
+            else:
+                print str(key) + ' -key not found...'
 
 
+"""
 class ScreenButton(Button):
     button_type = 'screenbutton'
     # Where a click of the button leads to
@@ -161,10 +163,11 @@ class ImageButton(Button):
                 game.current_screen = self.images[self][2]
                 game.naming_text = ''
                 game.all_screens[game.current_screen].screen_switches()
+"""
 
 
-class WriteButton(Button):
-    button_type = 'writebutton'
+class Writer(Button):
+    button_type = 'writer'
     abc = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l',
            'z', 'x', 'c', 'v', 'b', 'n', 'm']
     # abc.sort()
@@ -175,18 +178,26 @@ class WriteButton(Button):
     letter_size = 'lower'
     length = 12
     upper = True
+    target = 'naming text'
 
-    def init(self, included_letters=None, letters_x=10):
-        # this function isn't necessary, unless you want to change defaults
+    def init(self, included_letters=None, letters_x=10, target=None):
         if included_letters is not None:
             self.letters = included_letters
+        else:
+            self.letters = self.abc
+        if target is not None:
+            self.target = target
+        else:
+            self.target = 'naming text'
+
         self.length = letters_x
-        self.collision = {}
-        self.clickable = {}
-        self.current_colour = {}
+        # self.collision = {}
+        # self.clickable = {}
+        # self.current_colour = {}
         self.letter_size = 'lower'
         self.upper = True
 
+        """
         for i in self.letters:
             self.clickable[i] = False
             self.current_colour[i] = self.frame_colour
@@ -195,30 +206,57 @@ class WriteButton(Button):
         self.current_colour['lower'] = self.frame_colour
         self.collision['lower'] = screen.blit(pygame.Surface((0, 0)), (0, 0))
         self.clickable['DEL'] = False
-        self.current_colour['DEL'] = self.frame_colour
+        self.current_colour['DEL'] = self.frame_colour"""
 
-        self.all_buttons.append(self)
-
-    def draw_button(self, pos, available=True):
+    def draw(self, pos, available=True):
         cur_length = 0
         space_y = 0
         space_x = 0
         x = 0
         y = 0
-        for z in self.letters:
-            if self.upper and z.isalpha():
-                new_z = z.upper()
+
+        if self.upper:
+            self.letter_size = 'lower'
+        else:
+            self.letter_size = 'upper'
+
+        # Is writer available?
+        if available:
+            colour = self.frame_colour
+        else:
+            colour = self.unavailable_colour
+
+        new_letters = self.letters
+        new_letters.append('DEL')
+        new_letters.append(self.letter_size)
+
+        for letter in self.letters:
+            if self.upper and letter.isalpha():
+                new_letter = letter.upper()
             else:
-                new_z = z
-            new_button = pygame.Surface((self.font.text(new_z) + 10, self.font.size + 6))
-            new_button.fill(self.current_colour[z])
-            self.font.text(new_z, (5, 0), new_button)
+                new_letter = letter
+            new_button = pygame.Surface((self.font.text(new_letter) + 10, self.font.size + 6))
+
+            # Check collision
+            collision = self.used_screen.blit(new_button, (pos[0] + cur_length + space_x,
+                                                           pos[1] + (self.font.size + 6)*y + space_y))
+            clickable = False
+            if available and collision.collidepoint(self.used_mouse.pos):
+                colour = self.clickable_colour
+                clickable = True
+
+            # Fill in letter and blit
+            new_button.fill(colour)
+            self.font.text(new_letter, (5, 0), new_button)
             self.used_screen.blit(new_button, (pos[0] + cur_length + space_x,
                                                pos[1] + (self.font.size + 6)*y + space_y))
-            self.collision[z] = self.used_screen.blit(new_button, (pos[0] + cur_length + space_x,
-                                                                   pos[1] + (self.font.size + 6)*y + space_y))
 
-            cur_length += self.font.text(new_z) + 10
+            # CLICK
+            if game.clicked and clickable:
+                self.activate(new_letter)
+
+            # Add pixels for the next letter to follow
+            cur_length += self.font.text(new_letter) + 10
             space_x += 2
             x += 1
 
@@ -229,7 +267,7 @@ class WriteButton(Button):
                 space_y += 2
                 y += 1
 
-        for b in [self.letter_size, 'DEL']:
+        """for b in [self.letter_size, 'DEL']:
             new_button = pygame.Surface((self.font.text(b) + 10, self.font.size + 6))
             new_button.fill(self.current_colour[b])
             self.font.text(b, (5, 0), new_button)
@@ -247,15 +285,10 @@ class WriteButton(Button):
                 cur_length = 0
                 space_x = 0
                 space_y += 2
-                y += 1
+                y += 1"""
 
     def check(self):
-        if self.upper:
-            self.letter_size = 'lower'
-        else:
-            self.letter_size = 'upper'
-
-        for i in self.clickable.keys():
+        """for i in self.clickable.keys():
             if not self.available:
                 self.current_colour[i] = self.unavailable_colour
                 self.clickable[i] = False
@@ -265,38 +298,36 @@ class WriteButton(Button):
                 self.current_colour[i] = self.clickable_colour
             else:
                 self.clickable[i] = False
-                self.current_colour[i] = self.frame_colour
+                self.current_colour[i] = self.frame_colour"""
+        pass
 
-    def activate(self):
-        if self.available:
-            for i in self.clickable.keys():
-                if self.clickable[i]:
-                    if i not in ['upper', 'lower', 'DEL'] and len(game.switches['naming text']) < game.max_name_length:
-                        if self.upper:
-                            game.switches['naming text'] += i.upper()
-                        else:
-                            game.switches['naming text'] += i
-                    elif i == 'upper':
-                        self.upper = True
-                        self.letter_size = 'lower'
-                        self.clickable['lower'] = self.clickable.pop('upper')
-                        self.collision['lower'] = self.collision.pop('upper')
-                        self.current_colour['lower'] = self.current_colour.pop('upper')
-                    elif i == 'lower':
-                        self.upper = False
-                        self.letter_size = 'upper'
-                        self.clickable['upper'] = self.clickable.pop('lower')
-                        self.collision['upper'] = self.collision.pop('lower')
-                        self.current_colour['upper'] = self.current_colour.pop('lower')
-                    elif i == 'DEL' and len(game.switches['naming text']) > 0:
-                        game.switches['naming text'] = game.switches['naming text'][:-1]
+    def activate(self, values=None):
+        if values not in ['upper', 'lower', 'DEL'] and len(game.switches[self.target]) < game.max_name_length\
+                and values is not None:
+            if self.upper:
+                game.switches[self.target] += values.upper()
+            else:
+                game.switches[self.target] += values
+        elif values == 'upper':
+            self.upper = True
+            self.letter_size = 'lower'
+            """self.clickable['lower'] = self.clickable.pop('upper')
+            self.collision['lower'] = self.collision.pop('upper')
+            self.current_colour['lower'] = self.current_colour.pop('upper')"""
+        elif values == 'lower':
+            self.upper = False
+            self.letter_size = 'upper'
+            """self.clickable['upper'] = self.clickable.pop('lower')
+            self.collision['upper'] = self.collision.pop('lower')
+            self.current_colour['upper'] = self.current_colour.pop('lower')"""
+        elif values == 'DEL' and len(game.switches[self.target]) > 0:
+            game.switches[self.target] = game.switches[self.target][:-1]
 
 
 # BUTTONS
-# Create the buttons here; in the screens file first activate all the buttons neede on the specific screen,
-# draw the button, then check().
 buttons = Button()
 
+"""
 # screen buttons
 screen_buttons = {'continue': ['Continue >', 'clan screen'],
                   'back to main': ['< Back To Main Menu', 'start screen'], 'make new': ['Make New >', 'make clan screen'],
@@ -327,15 +358,15 @@ for z in switch_buttons.keys():
         b = switch_buttons[z][1]
         switch_buttons[z] = SwitchButton()
         switch_buttons[z].init(a, b)
-
+"""
 
 # WRITER
-writer = WriteButton()
+writer = Writer()
 writer.init()
 
-
+"""
 # Make example cats
 game.cat_buttons = {'cat0': ImageButton(), 'cat1': ImageButton(), 'cat2': ImageButton(), 'cat3': ImageButton(),
                     'cat4': ImageButton(), 'cat5': ImageButton(), 'cat6': ImageButton(), 'cat7': ImageButton(),
-                    'cat8': ImageButton(), 'cat9': ImageButton(), 'cat10': ImageButton(), 'cat11': ImageButton()}
+                    'cat8': ImageButton(), 'cat9': ImageButton(), 'cat10': ImageButton(), 'cat11': ImageButton()}"""
 

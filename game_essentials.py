@@ -11,7 +11,6 @@ class Game(object):
     # Text box variables
     naming_box = pygame.Surface((100, 20))
     naming_box.fill((230, 230, 230))
-    # naming_text = ''
     max_name_length = 8
 
     choose_cats = {}
@@ -19,10 +18,9 @@ class Game(object):
                    'cat4': None, 'cat5': None, 'cat6': None, 'cat7': None,
                    'cat8': None, 'cat9': None, 'cat10': None, 'cat11': None}
 
-    switches = {'cat': None, 'clan name': None, 'leader': None, 'medicine cat': None, 'members': [],
-                'event': None, 'cur screen': 'start screen', 'naming text': ''}
+    switches = {'cat': None, 'clan_name': None, 'leader': None, 'medicine_cat': None, 'members': [],
+                'event': None, 'cur_screen': 'start screen', 'naming_text': ''}
     all_screens = {}
-
     cur_events = {}
 
     # CLAN
@@ -30,9 +28,11 @@ class Game(object):
 
     def __init__(self, current_screen='start screen'):
         self.current_screen = current_screen
+        self.clicked = False
 
     def update_game(self):
-        self.current_screen = self.switches['cur screen']
+        self.current_screen = self.switches['cur_screen']
+        self.clicked = False
 
 
 # M O U S E
