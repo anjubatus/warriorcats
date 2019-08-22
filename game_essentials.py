@@ -18,7 +18,7 @@ class Game(object):
                    'cat4': None, 'cat5': None, 'cat6': None, 'cat7': None,
                    'cat8': None, 'cat9': None, 'cat10': None, 'cat11': None}
 
-    switches = {'cat': None, 'clan_name': None, 'leader': None, 'medicine_cat': None, 'members': [],
+    switches = {'cat': None, 'clan_name': '', 'leader': None, 'medicine_cat': None, 'members': [],
                 'event': None, 'cur_screen': 'start screen', 'naming_text': ''}
     all_screens = {}
     cur_events = {}
@@ -29,9 +29,13 @@ class Game(object):
     def __init__(self, current_screen='start screen'):
         self.current_screen = current_screen
         self.clicked = False
+        self.switch_screens = False
 
     def update_game(self):
-        self.current_screen = self.switches['cur_screen']
+        if self.current_screen != self.switches['cur_screen']:
+            self.current_screen = self.switches['cur_screen']
+            self.switch_screens = True
+
         self.clicked = False
 
 

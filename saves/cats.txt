@@ -1,9 +1,6 @@
-86767	Honey:leaf	female	medicine cat	senior adult	vengeful	None 	None 	None 	Tabby	DARKGINGER	True	long	2	4	1	4	YELLOW	False	VAN	None	BLACK	good fighter	None	NOTAIL
-62969	Brown:feather	male	apprentice	adolescent	vengeful	None 	None 	None 	TwoColour	LIGHTBROWN	True	medium	1	3	6	3	PALEGREEN	True	VAN	None	PINK	???	None	None
-46498	Shrew:tail	female	warrior	senior adult	bloodthirsty	None 	None 	None 	Tortie	GINGER	False	medium	2	3	8	4	BLUE	False	None	ONE	PINK	good teacher	None	None
-82741	Deep:moon	female	warrior	young adult	strange	None 	None 	None 	SingleColour	BROWN	False	medium	1	3	6	4	DARKBLUE	True	None	None	RED	fantastic hunter	None	None
-52680	Claw:song	female	kitten	kitten	???	None 	None 	None 	Tabby	LIGHTBROWN	False	medium	2	5	7	4	YELLOW	False	None	None	PINK	???	None	None
-80019	Swift:fish	female	warrior	senior adult	careful	None 	None 	None 	SingleColour	GREY	False	short	1	5	7	5	BLUE	True	None	None	PINK	fantastic hunter	None	None
-84364	Lake:toe	male	leader	elder	bloodthirsty	None 	None 	None 	SingleColour	BLACK	False	short	1	4	6	3	DARKBLUE	True	None	None	BLACK	good fighter	None	None
-24457	Oat:beam	female	warrior	adult	sassy	None 	None 	None 	TwoColour	DARKGREY	True	medium	1	4	8	4	AMBER	True	LITTLE	None	RED	smart	None	None
-40771	Patch:fur	female	kitten	kitten	???	None 	None 	None 	Speckled	GOLDEN	False	medium	2	5	8	5	AMBER	False	None	None	BLACK	???	None	None
+82851	Rock:patch	male	warrior	young adult	careful	None 	None 	None 	TwoColour	GREY	True	medium	1	5	7	5	PALEGREEN	False	VAN	None	PINK	fantastic hunter	None	None
+02581	Shade:nose	female	medicine cat	adolescent	brave	None 	None 	None 	SingleColour	BLACK	False	medium	2	5	8	3	PALEGREEN	False	None	None	BLACK	good fighter	None	None
+18088	Scorch:branch	male	elder	elder	vengeful	None 	None 	None 	SingleColour	PALEGINGER	False	medium	0	5	6	4	PALEGREEN	True	None	None	PINK	great speaker	None	None
+04173	Tawny:tuft	female	kitten	kitten	???	None 	None 	None 	Tabby	WHITE	True	long	1	4	2	3	HAZEL	True	TUXEDO	None	PINK	???	None	None
+08747	Sneeze:dawn	male	warrior	senior adult	adventurous	None 	None 	None 	SingleColour	PALEGREY	False	long	2	3	0	5	PALEGREEN	False	None	None	BLACK	excellent speaker	None	None
+10873	Sand:fur	male	leader	young adult	nervous	None 	None 	None 	SingleColour	PALEGREY	False	long	0	3	0	4	HAZEL	True	None	None	PINK	great teacher	None	None

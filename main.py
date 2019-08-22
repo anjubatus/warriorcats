@@ -6,21 +6,7 @@ import sys
 # P Y G A M E
 clock = pygame.time.Clock()
 
-
-# update switch values
-def update_switches():
-    """switch_buttons['clan_name'].value(game.switches['naming text'])
-    if game.switches['cat'] is not None and game.switches['cat'] in game.choose_cats.keys():
-        switch_buttons['leader'].value(game.choose_cats[game.switches['cat']])
-        switch_buttons['medicine_cat'].value(game.choose_cats[game.switches['cat']])
-        switch_buttons['members'].value(game.choose_cats[game.switches['cat']])
-
-    if game.clan is not None:
-        greencough.init()
-        leader_cer.init(game.clan.leader)"""
-    pass
-
-
+# events day
 events_class.day()
 
 
@@ -60,6 +46,10 @@ while True:
 
     # update
     game.update_game()
+    if game.switch_screens:
+        # print screens.all_screens[game.current_screen].name
+        screens.all_screens[game.current_screen].screen_switches()
+        game.switch_screens = False
 
     # END FRAME
     clock.tick(60)

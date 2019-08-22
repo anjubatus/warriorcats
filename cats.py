@@ -446,4 +446,3 @@ def example_cats():
         else:
             game.choose_cats[a] = Cat(status=choice(['kitten', 'apprentice', 'warrior', 'warrior', 'elder']))
         game.choose_cats[a].update_sprite()
-        game.cat_buttons['cat' + str(a)].init(game.choose_cats[a].sprite, 'switch', 'cat', a)
