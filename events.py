@@ -17,7 +17,7 @@ class Events(object):
             for i in self.all_events.values():
                 e = randint(0, 3)
                 if e == 1:
-                    print "event added..."
+                    # print "event added..."
                     game.cur_events[i.name] = i
 
     def news(self, pos):  # the layout for short squabble on the 'events' page, where you can click for the real page
@@ -40,6 +40,7 @@ class IllnessEvent(Events):
         verdana_big.text(header, pos)
         verdana.text('Cats have been infected! Action needs to be taken quickly before it spreads.',
                      (pos[0], pos[1] + 25))
+        buttons.draw_button(('center', pos[1]+50), text='Complete', cur_screen='event screen', event='illness')
 
     def page(self):
         header = self.par1[0].upper() + self.par1[1:] + ' outbreak!'
@@ -63,6 +64,7 @@ class CeremonyEvent(Events):
         verdana_big.text(header, pos)
         verdana.text('Come join the cats at the clearing.',
                      (pos[0], pos[1] + 25))
+        buttons.draw_button(('center', pos[1] + 50), text='Complete', cur_screen='event screen', event='ceremony')
 
     def page(self):
         header = self.par1[0].upper() + self.par1[1:] + ' ceremony!'

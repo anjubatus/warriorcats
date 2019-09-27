@@ -1,6 +1,9 @@
-82851	Rock:patch	male	warrior	young adult	careful	None 	None 	None 	TwoColour	GREY	True	medium	1	5	7	5	PALEGREEN	False	VAN	None	PINK	fantastic hunter	None	None
-02581	Shade:nose	female	medicine cat	adolescent	brave	None 	None 	None 	SingleColour	BLACK	False	medium	2	5	8	3	PALEGREEN	False	None	None	BLACK	good fighter	None	None
-18088	Scorch:branch	male	elder	elder	vengeful	None 	None 	None 	SingleColour	PALEGINGER	False	medium	0	5	6	4	PALEGREEN	True	None	None	PINK	great speaker	None	None
-04173	Tawny:tuft	female	kitten	kitten	???	None 	None 	None 	Tabby	WHITE	True	long	1	4	2	3	HAZEL	True	TUXEDO	None	PINK	???	None	None
-08747	Sneeze:dawn	male	warrior	senior adult	adventurous	None 	None 	None 	SingleColour	PALEGREY	False	long	2	3	0	5	PALEGREEN	False	None	None	BLACK	excellent speaker	None	None
-10873	Sand:fur	male	leader	young adult	nervous	None 	None 	None 	SingleColour	PALEGREY	False	long	0	3	0	4	HAZEL	True	None	None	PINK	great teacher	None	None
+36584	Whisker:song	male	warrior	adult	fierce	None 	None 	None 	Speckled	PALEGINGER	False	short	1	5	7	4	GREEN	True	None	None	BLACK	good speaker	None	None
+31551	Freckle:leaf	female	apprentice	adolescent	troublesome	None 	None 	None 	TwoColour	GREY	True	short	0	3	8	3	AMBER	False	LITTLE	None	BLACK	???	None	None
+21117	Oat:foot	male	leader	elder	charismatic	None 	None 	None 	SingleColour	WHITE	False	short	0	5	8	5	GREEN	False	None	None	RED	great speaker	None	None
+81428	Splash:breeze	female	medicine cat	senior adult	apathetic	None 	None 	None 	SingleColour	DARKGREY	False	long	2	5	2	5	DARKBLUE	False	None	None	PINK	great fighter	None	RIGHTEAR
+11415	Midge:fur	male	warrior	adult	calm	None 	None 	None 	SingleColour	BLACK	False	short	0	3	6	3	AMBER	True	None	None	RED	great hunter	None	None
+01560	Bird:dusk	male	kitten	kitten	bully	None 	None 	None 	Tabby	DARKGREY	True	medium	0	5	6	5	AMBER	True	TUXEDO	None	BLACK	???	None	None
+79037	Rubble:patch	male	warrior	young adult	righteous	None 	None 	None 	TwoColour	BLACK	True	long	2	3	1	3	BLUE	True	TUXEDOCREAMY	None	RED	fantastic teacher	None	None
+51978	Rat:whisker	female	warrior	senior adult	fierce	None 	None 	None 	Tabby	DARKGREY	False	short	1	5	7	4	GREEN	True	None	None	BLACK	fantastic teacher	None	None
+56090	Crow:heart	female	apprentice	adolescent	apathetic	None 	None 	None 	Calico	BLACK	True	long	0	4	1	4	AMBER	True	ANYCREAMY	FADEDONE	PINK	???	None	None

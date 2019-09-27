@@ -3,7 +3,7 @@ import pygame
 screen_x = 800
 screen_y = 700
 screen = pygame.display.set_mode((screen_x, screen_y), pygame.HWSURFACE)
-pygame.display.set_caption('Warrior Cats Simulator')
+pygame.display.set_caption('Warrior Cats Generator')
 
 
 # G A M E

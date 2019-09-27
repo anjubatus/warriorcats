@@ -30,9 +30,9 @@ while True:
             pygame.quit()
             sys.exit()
 
-        if event.type == pygame.KEYDOWN:
+        """if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a:
-                print cat_class.all_cats
+                print cat_class.all_cats"""
 
         if event.type == pygame.MOUSEMOTION:
             mouse_pos = pygame.mouse.get_pos()

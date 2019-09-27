@@ -34,4 +34,5 @@ class Font(object):
 verdana = Font('verdana')
 verdana_red = Font('verdana', colour=(242, 52, 29))
 verdana_small = Font('verdana', 11)
+verdana_baby = Font('verdana', 11, (100, 100, 250))
 verdana_big = Font('verdana', 18)

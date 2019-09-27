@@ -7,8 +7,11 @@ from random import choice, randint
 
 class Cat(object):
     used_screen = screen
-    traits = ['ambitious', 'loyal', 'careful', 'brave', 'fierce', 'nervous', 'strict', 'charismatic', 'calm',
-              'adventurous', 'compassionate', 'playful', 'vengeful', 'apathetic', 'sassy', 'lonesome']
+    traits = ['ambitious', 'loyal', 'righteous', 'fierce', 'nervous', 'strict', 'charismatic', 'calm',
+              'daring', 'loving', 'playful', 'bitter', 'lonesome', 'troublesome', 'insecure', 'vengeful',
+              'shameless']
+    kit_traits = ['bouncy', 'bullying', 'daydreamer', 'nervous', 'charming', 'attention-seeker',
+                  'inquisitive', 'bossy', 'troublesome', 'quiet', 'daring', 'sweet', 'insecure']
     ages = ['kitten', 'adolescent', 'young adult', 'adult', 'adult', 'senior adult', 'elder']
     gender_tags = {'female': 'F', 'male': 'M'}
     skills = ['good hunter', 'great hunter', 'fantastic hunter', 'smart', 'very smart', 'extremely smart',
@@ -54,7 +57,7 @@ class Cat(object):
             else:
                 self.skill = '???'
         else:
-            self.trait = '???'
+            self.trait = self.trait = choice(self.kit_traits)
             self.skill = '???'
 
         # gender
@@ -148,8 +151,11 @@ class Cat(object):
             # WHITE PATCHES
             if self.pelt.white and self.pelt.white_patches is not None:
                 a = randint(0, 10)
-                if a == 1 and self.pelt.name in ['Calico', 'TwoColour', 'Tabby', 'Speckled']:
+                if a == 1 and self.pelt.name in ['Calico', 'TwoColour', 'Tabby', 'Speckled']\
+                        and self.pelt.colour != 'WHITE':
                     self.white_patches = choice(['COLOURPOINT', 'COLOURPOINTCREAMY'])
+                elif a == 1 and self.pelt.name in ['Calico', 'TwoColour', 'Tabby', 'Speckled']:
+                    self.white_patches = 'COLOURPOINT'
                 elif self.pelt.name in ['Tabby', 'Speckled', 'TwoColour'] and self.pelt.colour == 'WHITE':
                     self.white_patches = choice(['ANY', 'TUXEDO', 'LITTLE', 'VAN'])
                 else:
